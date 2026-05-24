@@ -4,7 +4,7 @@ pipeline {
     environment {
         AWS_DEFAULT_REGION = 'ap-south-2' 
         APPLICATION_NAME = 'NIkk-App' 
-        DEP_GROUP = 'Nikk-DeployGroup'
+        DEPLOYMENT_GROUP = 'Nikk-DeployGroup'
         S3_BUCKET = 'nikk-codedeploy-artifacts' 
               
     }
