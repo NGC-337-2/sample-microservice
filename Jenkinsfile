@@ -29,7 +29,8 @@ pipeline {
                 sh '''
                 zip -r deployment.zip . \
                 -x "*.git*" \
-                -x "node_modules/*"
+                -x "node_modules/*" \
+		-x "app.log"
                 '''
             }
         }
@@ -37,7 +38,7 @@ pipeline {
         stage('Upload to S3') {
             steps {
                 withAWS(credentials: 'aws-jenkins-creds',
-                         region: 'us-east-1') {
+                         region: 'ap-south-2') {
 
                     sh '''
                     aws s3 cp deployment.zip \
@@ -50,7 +51,7 @@ pipeline {
         stage('Deploy to CodeDeploy') {
             steps {
                 withAWS(credentials: 'aws-jenkins-creds',
-                         region: 'us-east-1') {
+                         region: 'ap-south-2') {
 
                     sh '''
                     aws deploy create-deployment \
